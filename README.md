@@ -29,6 +29,18 @@ This project is built for the **Antigravity AI Fitness Startup** to bridge the g
 
 ---
 
+## 🏗️ System Architecture
+
+FitFirst utilizes a type-safe serverless architecture designed for high throughput and reliable AI orchestration:
+
+1. **Multimodal Video Ingestion**: Streams direct file uploads from Supabase Storage into the Google Gemini File API, analyzing movements and extracting timeline exercises using structured JSON output.
+2. **Vector Similarity Matching Engine**: Translates extracted raw exercise names into 1536-dimensional vector embeddings, resolving them against a canonical exercise registry via a custom PostgreSQL cosine distance search (`pgvector`) optimized by an **HNSW index**.
+3. **AI Workout Generator**: Queries the user's historical exercise catalog to build a bounded context prompt, generating custom workout schedules via Gemini Flash, and saving them in batches using transactional sequences.
+
+> 📖 **Detailed Architecture Guide**: For complete system sequence flows, SQL indices, and database schema diagrams, see the [Detailed System Architecture Document](docs/architecture.md).
+
+---
+
 ## ⚙️ Project Structure
 
 ```
